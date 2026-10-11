@@ -22,7 +22,7 @@ export const config = {
    * Path to a portrait inside /public, e.g. 'images/teacher.jpg'.
    * Leave empty to show the teacher's initials instead.
    */
-  teacherPhoto: '',
+  teacherPhoto: 'images/teacher.webp',
 
   /** City where the studio is. */
   city: { sr: 'Beograd', ru: 'Белград' } satisfies Record<Lang, string>,

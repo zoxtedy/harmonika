@@ -33,6 +33,19 @@ npm run dev       # http://localhost:4321/harmonika/
 npm test          # type-check, build, and verify the built pages
 ```
 
+## Download images from Instagram
+
+To use a photo from an Instagram post on the site (for example as `teacherPhoto`), download it with:
+
+```sh
+npm run ig -- https://www.instagram.com/p/SHORTCODE/ -o public/images
+```
+
+The script saves the highest-resolution image the post offers. A carousel saves every slide
+(`SHORTCODE_1.jpg`, `SHORTCODE_2.jpg`, …), and a reel saves its cover image. You can pass several
+links at once. Without `-o`, files go to `instagram-downloads/`, which git ignores.
+The post must be public. If Instagram starts refusing requests after many downloads, wait a few minutes.
+
 ## Deployment
 
 `.github/workflows/deploy.yml` builds and publishes the site on every push to `main`.

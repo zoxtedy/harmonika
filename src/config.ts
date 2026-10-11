@@ -22,11 +22,10 @@ export const config = {
    * Path to a portrait inside /public, e.g. 'images/teacher.jpg'.
    * Leave empty to show the teacher's initials instead.
    */
-  teacherPhoto: '',
+  teacherPhoto: 'images/teacher.webp',
 
-  /** City, plus the "in <city>" form used inside sentences. */
+  /** City where the studio is. */
   city: { sr: 'Beograd', ru: 'Белград' } satisfies Record<Lang, string>,
-  cityIn: { sr: 'u Beogradu', ru: 'в Белграде' } satisfies Record<Lang, string>,
 
   contact: {
     /** PLACEHOLDER: phone number in international format, as it should be displayed. */

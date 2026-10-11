@@ -1,18 +1,11 @@
 /**
  * Site details: names, contacts, stats, Instagram posts.
- * Everything marked PLACEHOLDER must be replaced before going live.
  * Text that differs per language lives in src/i18n/.
  */
 import type { Lang } from './i18n';
 
 export const config = {
-  /** Brand shown in the header and footer. */
-  brand: {
-    sr: 'Umetnost Harmonike',
-    ru: 'Искусство аккордеона',
-  } satisfies Record<Lang, string>,
-
-  /** Teacher's name as written in each language (initials are taken from it). */
+  /** Teacher's name in each language; with "school" from src/i18n it forms the brand. */
   teacherName: {
     sr: 'Petar Veličković',
     ru: 'Петар Величкович',
@@ -24,16 +17,19 @@ export const config = {
    */
   teacherPhoto: 'images/teacher.webp',
 
-  /** City where the studio is. */
-  city: { sr: 'Beograd', ru: 'Белград' } satisfies Record<Lang, string>,
+  /** Where lessons take place. */
+  location: {
+    sr: 'Kaluđerica, Beograd',
+    ru: 'Калуджерица, Белград',
+  } satisfies Record<Lang, string>,
 
   contact: {
-    /** PLACEHOLDER: phone number in international format, as it should be displayed. */
-    phone: '+381 64 111 111',
-    /** PLACEHOLDER: WhatsApp number, digits only with country code (no +, spaces or leading 00). */
-    whatsapp: '38164111111',
-    /** PLACEHOLDER: Viber number in international format with +, no spaces. */
-    viber: '+38164111111',
+    /** Phone number in international format, as it should be displayed. */
+    phone: '+381 61 2854 390',
+    /** WhatsApp number, digits only with country code (no +, spaces or leading 00). */
+    whatsapp: '381612854390',
+    /** Viber number in international format with +, no spaces. */
+    viber: '+381612854390',
     /** Instagram username without the @. */
     instagram: 'petarv.53170396',
   },

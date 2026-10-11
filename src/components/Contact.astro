@@ -55,7 +55,7 @@ const channels = [
 
     <p class="contact__studio" data-reveal>
       <Icon name="pin" />
-      <span>{t.studio}: {config.city[lang]}</span>
+      <span><strong>{config.location[lang]}</strong> ({t.otherLocations})</span>
     </p>
   </div>
 </section>
@@ -139,11 +139,18 @@ const channels = [
     gap: 0.6rem;
     margin-top: 2.5rem;
     color: var(--muted);
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+
+  .contact__studio strong {
+    color: var(--text);
+    font-weight: 600;
   }
 
   .contact__studio :global(svg) {
+    flex-shrink: 0;
     width: 1.1rem;
     height: 1.1rem;
     color: var(--brass);

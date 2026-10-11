@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import { config } from '../config';
 import { dictionaries, type Lang } from '../i18n';
 
 interface Props {
@@ -8,7 +9,6 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = dictionaries[lang].lessons;
-const numerals = ['01', '02', '03'];
 ---
 
 <section id="lessons" class="section section--raised" aria-labelledby="lessons-title">
@@ -16,170 +16,124 @@ const numerals = ['01', '02', '03'];
     <div class="section-head" data-reveal>
       <p class="kicker"><span class="kicker__num">II</span>{t.kicker}</p>
       <h2 id="lessons-title" class="section-title">{t.title}</h2>
-      <p class="section-intro">{t.intro}</p>
     </div>
 
-    <ol class="levels">
+    <ul class="features">
       {
-        t.levels.map((level, i) => (
-          <li class="level" data-reveal style={`transition-delay: ${i * 0.08}s`}>
-            <span class="level__num">{numerals[i]}</span>
-            <h3 class="level__name">{level.name}</h3>
-            <p class="level__who">{level.who}</p>
-            <ul class="level__points">
-              {level.points.map((point) => (
-                <li>{point}</li>
-              ))}
-            </ul>
+        t.features.map((f, i) => (
+          <li class="feature" data-reveal style={`transition-delay: ${i * 0.06}s`}>
+            <span class="feature__icon">
+              <Icon name={f.icon as 'music' | 'cap' | 'ornament' | 'people' | 'star'} />
+            </span>
+            <h3 class="feature__name">{f.name}</h3>
+            <p class="feature__text">{f.text}</p>
           </li>
         ))
       }
-    </ol>
-
-    <div class="formats" data-reveal>
-      {
-        t.formats.map((f, i) => (
-          <div class="format">
-            <Icon name={i === 0 ? 'pin' : 'video'} class="format__icon" />
-            <div>
-              <h3>{f.name}</h3>
-              <p>{f.text}</p>
-            </div>
-          </div>
-        ))
-      }
-    </div>
+      <li class="feature feature--quote" data-reveal style={`transition-delay: ${t.features.length * 0.06}s`}>
+        <blockquote>
+          <p>
+            {t.quote[0]}
+            <em>{t.quote[1]}</em>
+          </p>
+          <footer>— {config.teacherName[lang]}</footer>
+        </blockquote>
+      </li>
+    </ul>
   </div>
 </section>
 
 <style>
-  .levels {
+  .features {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    gap: 1.25rem;
   }
 
-  .level {
-    position: relative;
-    padding: 2.5rem 2rem 2.25rem;
+  .feature {
+    padding: 2.25rem 2rem;
     background: var(--bg-card);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     transition: border-color 0.4s var(--ease);
   }
 
-  .level:hover {
+  .feature:hover {
     border-color: var(--line-strong);
   }
 
-  .level::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 2rem;
-    width: 3rem;
-    height: 2px;
-    background: var(--brass);
-  }
-
-  .level__num {
-    display: block;
+  .feature__icon {
+    display: grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
     margin-bottom: 1.5rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
     color: var(--brass);
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-style: italic;
   }
 
-  .level__name {
-    font-size: 2rem;
+  .feature__icon :global(svg) {
+    width: 1.35rem;
+    height: 1.35rem;
   }
 
-  .level__who {
+  .feature__name {
+    font-size: 1.6rem;
+    line-height: 1.15;
+  }
+
+  .feature__text {
     margin-top: 0.6rem;
-    min-height: 3.4em;
     color: var(--muted);
-    font-size: 0.95rem;
+    font-size: 0.98rem;
   }
 
-  .level__points {
-    display: grid;
-    gap: 0.8rem;
-    margin-top: 1.75rem;
-    padding-top: 1.75rem;
-    border-top: 1px solid var(--line);
-    font-size: 0.95rem;
-  }
-
-  .level__points li {
-    position: relative;
-    padding-left: 1.4rem;
-  }
-
-  .level__points li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.72em;
-    width: 0.55rem;
-    height: 1px;
-    background: var(--brass);
-  }
-
-  .formats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .format {
+  .feature--quote {
     display: flex;
-    gap: 1.25rem;
-    padding: 1.75rem 2rem;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
+    align-items: center;
+    background:
+      radial-gradient(circle at 30% 30%, rgb(201 164 106 / 0.14), transparent 70%),
+      var(--bg-card);
+    border-color: var(--line-strong);
   }
 
-  .format :global(.format__icon) {
-    flex-shrink: 0;
-    width: 1.4rem;
-    height: 1.4rem;
-    margin-top: 0.3rem;
+  .feature--quote blockquote {
+    margin: 0;
+  }
+
+  .feature--quote p {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.2vw, 1.8rem);
+    font-style: italic;
+    line-height: 1.3;
+  }
+
+  .feature--quote em {
+    display: block;
     color: var(--brass);
   }
 
-  .format h3 {
-    font-size: 1.5rem;
-  }
-
-  .format p {
-    margin-top: 0.35rem;
+  .feature--quote footer {
+    margin-top: 1rem;
     color: var(--muted);
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
   }
 
   @media (max-width: 60rem) {
-    .levels {
-      grid-template-columns: 1fr;
-    }
-
-    .level__who {
-      min-height: 0;
+    .features {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media (max-width: 40rem) {
-    .formats {
+  @media (max-width: 38rem) {
+    .features {
       grid-template-columns: 1fr;
     }
 
-    .level,
-    .format {
-      padding-inline: 1.5rem;
+    .feature {
+      padding: 1.75rem 1.5rem;
     }
   }
 </style>

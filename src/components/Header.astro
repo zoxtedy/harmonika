@@ -22,7 +22,10 @@ const sections = ['about', 'lessons', 'trial', 'gallery', 'contact'] as const;
             r="1.6"></circle><circle cx="24" cy="16" r="1.6"></circle><circle cx="24" cy="21" r="1.6"
           ></circle></svg>
       </span>
-      <span class="brand__name">{config.brand[lang]}</span>
+      <span class="brand__text">
+        <span class="brand__school">{t.school}</span>
+        <span class="brand__name">{config.teacherName[lang]}</span>
+      </span>
     </a>
 
     <button
@@ -134,11 +137,26 @@ const sections = ['about', 'lessons', 'trial', 'gallery', 'contact'] as const;
     fill: var(--brass);
   }
 
+  .brand__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .brand__school {
+    color: var(--brass);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
   .brand__name {
     font-family: var(--font-display);
-    font-size: 1.35rem;
+    font-size: 1.3rem;
+    font-style: italic;
     font-weight: 500;
-    letter-spacing: 0.02em;
     white-space: nowrap;
   }
 

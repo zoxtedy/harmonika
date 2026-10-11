@@ -35,7 +35,10 @@ const stats = (['years', 'students', 'ages'] as const)
           )
         }
       </div>
-      <figcaption>{name}</figcaption>
+      <figcaption>
+        <span class="about__name">{name}</span>
+        <span class="about__credential">{t.credential}</span>
+      </figcaption>
     </figure>
 
     <div class="about__body" data-reveal>
@@ -136,11 +139,24 @@ const stats = (['years', 'students', 'ages'] as const)
 
   .about__portrait figcaption {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
     margin-top: 2.25rem;
-    color: var(--muted);
+  }
+
+  .about__name {
     font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     font-style: italic;
+  }
+
+  .about__credential {
+    color: var(--brass);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
   }
 
   .about__intro {

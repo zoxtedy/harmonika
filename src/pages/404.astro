@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import { langs, langLabels, homeUrl } from '../i18n';
+
+const messages = {
+  sr: 'Stranica nije pronađena.',
+  ru: 'Страница не найдена.',
+  en: 'Page not found.',
+};
+---
+
+<Base lang="sr" title="404" description={messages.en} alternates={false}>
+  <main class="not-found">
+    <p class="not-found__code">404</p>
+    <ul>
+      {
+        langs.map((l) => (
+          <li lang={l}>
+            <span>{messages[l]}</span>
+            <a href={homeUrl(l)}>{langLabels[l]} →</a>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</Base>
+
+<style>
+  .not-found {
+    display: grid;
+    place-content: center;
+    gap: 2rem;
+    min-height: 100svh;
+    padding: var(--gutter);
+    text-align: center;
+  }
+
+  .not-found__code {
+    color: var(--brass);
+    font-family: var(--font-display);
+    font-size: clamp(6rem, 20vw, 10rem);
+    font-style: italic;
+    line-height: 1;
+  }
+
+  .not-found ul {
+    display: grid;
+    gap: 0.75rem;
+    color: var(--muted);
+  }
+
+  .not-found a {
+    margin-left: 0.5rem;
+    color: var(--brass);
+  }
+</style>

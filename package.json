@@ -11,7 +11,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "test": "astro check && astro build && node scripts/verify-build.mjs"
+    "test": "astro check && astro build && node scripts/verify-build.mjs",
+    "ig": "node scripts/instagram-download.mjs"
   },
   "dependencies": {
     "astro": "^7.3.8"

@@ -5,11 +5,10 @@ import { langs, langLabels, homeUrl } from '../i18n';
 const messages = {
   sr: 'Stranica nije pronađena.',
   ru: 'Страница не найдена.',
-  en: 'Page not found.',
 };
 ---
 
-<Base lang="sr" title="404" description={messages.en} alternates={false}>
+<Base lang="sr" title="404" description={messages.sr} alternates={false}>
   <main class="not-found">
     <p class="not-found__code">404</p>
     <ul>

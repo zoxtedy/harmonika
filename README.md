@@ -1,30 +1,27 @@
 # Harmonika
 
-Website for private piano accordion lessons, in Serbian, Russian and English.
+Website for private piano accordion lessons, in Serbian and Russian.
 Built with [Astro](https://astro.build) as a static site and deployed to GitHub Pages.
 
-- Serbian: `/` · Russian: `/ru/` · English: `/en/`
-- Sections: hero, about the teacher, lessons, pricing, Instagram gallery, contact (WhatsApp, Viber, phone, Instagram)
+- Serbian: `/` · Russian: `/ru/`
+- Sections: hero, about the teacher, lessons, free first lesson, Instagram gallery, contact (WhatsApp, Viber, phone, Instagram)
 
 ## Before going live
 
-Replace the placeholders in **`src/config.ts`** (each one is marked `PLACEHOLDER`):
+Fill in **`src/config.ts`** (remaining placeholders are marked `PLACEHOLDER`):
 
 | Field | What to put there |
 | --- | --- |
-| `teacherName` | Full name (also used for the monogram when there is no photo) |
+| `teacherName` | Full name in each language (its initials show while there is no photo) |
 | `teacherPhoto` | Put a portrait in `public/images/` and set e.g. `'images/teacher.jpg'` (4:5 ratio works best) |
-| `city`, `cityIn` | City name, and the "in <city>" form for each language |
 | `contact.phone` | Phone number as it should be displayed, e.g. `+381 64 123 4567` |
 | `contact.whatsapp` | Same number, digits only: `381641234567` |
 | `contact.viber` | Same number with `+`, no spaces: `+381641234567` |
-| `contact.instagram` | Instagram username without `@` |
-| `stats` | Years of teaching, number of students, student ages |
-| `prices` | Price for each plan |
+| `stats` | Years of teaching, number of students, student ages (hidden while empty) |
 | `instagramPosts` | Links to the posts or reels to show in the gallery |
 
-All other text (bio, lesson levels, plan names, durations) lives in `src/i18n/sr.ts`, `ru.ts` and `en.ts`.
-The three files share one type, so a key missing from any language fails `npm run check`.
+All other text (bio, lesson levels, first-lesson offer) lives in `src/i18n/sr.ts` and `ru.ts`.
+Both files share one type, so a key missing from any language fails `npm run check`.
 
 ## Development
 

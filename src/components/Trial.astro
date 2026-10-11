@@ -1,0 +1,138 @@
+---
+import Icon from './Icon.astro';
+import { dictionaries, type Lang } from '../i18n';
+import { links } from '../lib/contact';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = dictionaries[lang].trial;
+---
+
+<section id="trial" class="section" aria-labelledby="trial-title">
+  <div class="container">
+    <div class="offer" data-reveal>
+      <div class="offer__seal" aria-hidden="true">
+        <span class="offer__label">{t.label}</span>
+        <span class="offer__badge">{t.badge}</span>
+      </div>
+
+      <div class="offer__body">
+        <p class="kicker"><span class="kicker__num">III</span>{t.kicker}</p>
+        <h2 id="trial-title" class="section-title">{t.title}</h2>
+        <p class="section-intro">{t.intro}</p>
+        <ul class="offer__points">
+          {t.points.map((point) => <li>{point}</li>)}
+        </ul>
+        <div class="offer__actions">
+          <a class="btn btn--solid" href={links.whatsapp(lang)} target="_blank" rel="noopener">
+            <Icon name="whatsapp" />
+            {t.cta}
+          </a>
+          <p class="offer__note">{t.note}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .offer {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    overflow: hidden;
+    background: var(--bg-card);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+  }
+
+  .offer__seal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 3rem 2rem;
+    background:
+      radial-gradient(circle at 50% 45%, rgb(201 164 106 / 0.18), transparent 65%),
+      repeating-linear-gradient(90deg, rgb(201 164 106 / 0.06) 0 1px, transparent 1px 22px);
+    border-right: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .offer__label {
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .offer__badge {
+    color: var(--brass);
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 6vw, 4.5rem);
+    font-style: italic;
+    line-height: 1;
+  }
+
+  .offer__body {
+    padding: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .offer__points {
+    display: grid;
+    gap: 0.85rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .offer__points li {
+    position: relative;
+    padding-left: 1.4rem;
+  }
+
+  .offer__points li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.8em;
+    width: 0.55rem;
+    height: 1px;
+    background: var(--brass);
+  }
+
+  .offer__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem 2rem;
+    margin-top: 2.5rem;
+  }
+
+  .offer__note {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 52rem) {
+    .offer {
+      grid-template-columns: 1fr;
+    }
+
+    .offer__seal {
+      padding: 2.5rem 1.5rem;
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+  }
+
+  @media (max-width: 30rem) {
+    .offer__actions .btn {
+      flex: 1 1 100%;
+    }
+  }
+</style>

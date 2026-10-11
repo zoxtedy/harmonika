@@ -32,6 +32,8 @@ export const config = {
     viber: '+381612854390',
     /** Instagram username without the @. */
     instagram: 'petarv.53170396',
+    /** Full URL of the Facebook page. */
+    facebook: 'https://www.facebook.com/profile.php?id=61574333379340',
   },
 
   /**

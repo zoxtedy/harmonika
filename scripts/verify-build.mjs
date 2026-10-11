@@ -14,7 +14,7 @@ for (const [lang, file] of Object.entries(pages)) {
   for (const id of ['about', 'lessons', 'trial', 'gallery', 'contact']) {
     assert.match(html, new RegExp(`id="${id}"`), `${file}: missing #${id} section`);
   }
-  for (const link of ['https://wa.me/', 'viber://chat?number=', 'tel:+', 'https://www.instagram.com/']) {
+  for (const link of ['https://wa.me/', 'viber://chat?number=', 'tel:+', 'https://www.instagram.com/', 'https://www.facebook.com/']) {
     assert.ok(html.includes(link), `${file}: missing ${link} link`);
   }
 

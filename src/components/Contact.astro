@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { lang } = Astro.props;
-const t = dictionaries[lang].contact;
+const t = { ...dictionaries[lang].contact, school: dictionaries[lang].school };
 
 const channels = [
   { icon: 'whatsapp', label: t.whatsapp, hint: t.messageHint, href: links.whatsapp(lang), external: true },
@@ -20,6 +20,13 @@ const channels = [
     label: t.instagram,
     hint: `@${config.contact.instagram}`,
     href: links.instagram(),
+    external: true,
+  },
+  {
+    icon: 'facebook',
+    label: t.facebook,
+    hint: `${t.school} ${config.teacherName[lang]}`,
+    href: links.facebook(),
     external: true,
   },
 ] as const;
@@ -69,7 +76,7 @@ const channels = [
 
   .channels {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1.25rem;
   }
 
@@ -156,9 +163,14 @@ const channels = [
     color: var(--brass);
   }
 
-  @media (max-width: 56rem) {
+  @media (max-width: 64rem) {
     .channels {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Odd card out spans the row. */
+    .channels li:last-child {
+      grid-column: 1 / -1;
     }
   }
 

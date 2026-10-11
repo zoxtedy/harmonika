@@ -24,12 +24,27 @@ export const sr = {
   },
   about: {
     kicker: 'O meni',
-    title: 'Život sa instrumentom',
-    paragraphs: [
-      'Klavirnu harmoniku sviram od detinjstva i godinama tu ljubav prenosim na učenike svih uzrasta. Moji časovi spajaju čvrstu klasičnu tehniku sa narodnim i popularnim repertoarom koji instrument čini živim.',
-      'Svaki učenik je drugačiji, zato ne postoji jedinstven program za sve. Zajedno postavljamo ciljeve — da odsvirate prvu pesmu za porodicu, da se pripremite za prijemni u muzičkoj školi ili za takmičenje — i pravimo plan oko njih.',
-      'Časovi se održavaju u mom studiju {cityIn} ili onlajn, na srpskom ili ruskom jeziku.',
+    title: 'Harmonika je deo mog života',
+    intro: 'Zovem se Petar Veličković i harmoniku sviram od svoje osme godine.',
+    journeyTitle: 'Muzički put',
+    journey: [
+      { place: 'Lebane', text: 'Niža muzička škola — početak mog muzičkog obrazovanja' },
+      { place: 'Leskovac', text: 'Završena Srednja muzička škola' },
+      { place: 'Ukrajina', text: 'Upis na fakultet' },
+      { place: 'Belgorod', text: 'Zbog ratnih okolnosti, nastavak školovanja u Rusiji' },
+      {
+        place: 'Sankt Peterburg',
+        text: 'Bogato muzičko iskustvo i upoznavanje različitih pristupa izvođenju i pedagogiji',
+      },
     ],
+    paragraphs: [
+      'Harmonika za mene nikada nije bila samo instrument. Ona je deo mog života, ali i način da čuvamo i prenosimo muziku, običaje i kulturno nasleđe našeg naroda.',
+      'Posebno mesto u mom muzičkom svetu zauzimaju velikani harmonike kao što su Ljubiša Pavković, Radojka Živković, Jovica Petković i Aleksandar Sofronijević.',
+      'Već dugi niz godina radim sa decom i upravo u tome pronalazim posebno zadovoljstvo. Verujem da učenje harmonike ne treba da bude samo vežbanje nota i tehnike, već i zabava, druženje, muzika i razvijanje ljubavi prema instrumentu.',
+      'Trudim se da svakom učeniku pristupim individualno, jer nisu sva deca ista — neko brzo savladava tehniku, neko ima odličan sluh, neko voli narodnu muziku, neko želi da svira ono što čuje na televiziji ili internetu. Moj cilj je da zajedno pronađemo ono što učenika pokreće i da kroz to napredujemo.',
+    ],
+    quote: 'Ne učimo samo kako da sviramo harmoniku — učimo kako da uživamo u muzici.',
+    motto: 'Čuvamo tradiciju. Učimo savremeno. Sviramo iz srca.',
     stats: {
       years: 'godina predavanja',
       students: 'učenika',

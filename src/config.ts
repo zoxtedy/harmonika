@@ -24,9 +24,8 @@ export const config = {
    */
   teacherPhoto: '',
 
-  /** City, plus the "in <city>" form used inside sentences. */
+  /** City where the studio is. */
   city: { sr: 'Beograd', ru: 'Белград' } satisfies Record<Lang, string>,
-  cityIn: { sr: 'u Beogradu', ru: 'в Белграде' } satisfies Record<Lang, string>,
 
   contact: {
     /** PLACEHOLDER: phone number in international format, as it should be displayed. */

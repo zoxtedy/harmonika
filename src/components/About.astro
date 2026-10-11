@@ -41,9 +41,30 @@ const stats = (['years', 'students', 'ages'] as const)
     <div class="about__body" data-reveal>
       <p class="kicker"><span class="kicker__num">I</span>{t.kicker}</p>
       <h2 id="about-title" class="section-title">{t.title}</h2>
-      <div class="about__text">
-        {t.paragraphs.map((p) => <p>{p.replace('{cityIn}', config.cityIn[lang])}</p>)}
+      <p class="about__intro">{t.intro}</p>
+
+      <div class="journey">
+        <h3 class="journey__title">{t.journeyTitle}</h3>
+        <ol class="journey__steps">
+          {
+            t.journey.map((step) => (
+              <li>
+                <span class="journey__place">{step.place}</span>
+                <span class="journey__text">{step.text}</span>
+              </li>
+            ))
+          }
+        </ol>
       </div>
+
+      <div class="about__text">
+        {t.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+
+      <blockquote class="about__quote">
+        <p>{t.quote}</p>
+        <footer>{t.motto}</footer>
+      </blockquote>
       {
         stats.length > 0 && (
           <dl class="about__stats">
@@ -64,11 +85,13 @@ const stats = (['years', 'students', 'ages'] as const)
   .about {
     display: grid;
     grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
-    align-items: center;
+    align-items: start;
     gap: clamp(2.5rem, 7vw, 6rem);
   }
 
   .about__portrait {
+    position: sticky;
+    top: calc(var(--header-h) + 2.5rem);
     margin: 0;
   }
 
@@ -119,12 +142,115 @@ const stats = (['years', 'students', 'ages'] as const)
     font-style: italic;
   }
 
+  .about__intro {
+    margin-top: 1.75rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.4vw, 1.7rem);
+    line-height: 1.35;
+  }
+
+  .journey {
+    margin-top: 2.5rem;
+    padding: 1.75rem 1.75rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  .journey__title {
+    margin-bottom: 1.25rem;
+    color: var(--brass);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .journey__steps {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .journey__steps li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    gap: 0.25rem 1.25rem;
+    padding: 0 0 1.1rem 1.6rem;
+  }
+
+  .journey__steps li:last-child {
+    padding-bottom: 0;
+  }
+
+  /* Dot and connecting line. */
+  .journey__steps li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 1px solid var(--brass);
+    border-radius: 50%;
+    background: var(--bg-card);
+  }
+
+  .journey__steps li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: calc(0.25rem - 0.5px);
+    top: calc(0.55em + 0.6rem);
+    bottom: 0.15rem;
+    width: 1px;
+    background: var(--line-strong);
+  }
+
+  .journey__steps li:last-child::before {
+    background: var(--brass);
+  }
+
+  .journey__place {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    line-height: 1.45;
+  }
+
+  .journey__text {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
   .about__text {
     display: grid;
     gap: 1.15rem;
-    margin-top: 1.75rem;
+    margin-top: 2.5rem;
     color: var(--muted);
     font-size: 1.05rem;
+  }
+
+  .about__quote {
+    margin: 2.75rem 0 0;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--brass);
+  }
+
+  .about__quote p {
+    font-family: var(--font-display);
+    font-size: clamp(1.45rem, 2.6vw, 1.85rem);
+    font-style: italic;
+    line-height: 1.3;
+  }
+
+  .about__quote footer {
+    margin-top: 1rem;
+    color: var(--brass);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
   }
 
   .about__stats {
@@ -165,11 +291,22 @@ const stats = (['years', 'students', 'ages'] as const)
     }
 
     .about__portrait {
+      position: static;
       max-width: 22rem;
     }
 
     .about__frame::before {
       inset: 0.75rem -0.75rem -0.75rem 0.75rem;
+    }
+  }
+
+  @media (max-width: 34rem) {
+    .journey {
+      padding-inline: 1.25rem;
+    }
+
+    .journey__steps li {
+      grid-template-columns: 1fr;
     }
   }
 

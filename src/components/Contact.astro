@@ -1,0 +1,167 @@
+---
+import Icon from './Icon.astro';
+import { config } from '../config';
+import { dictionaries, type Lang } from '../i18n';
+import { links } from '../lib/contact';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = dictionaries[lang].contact;
+
+const channels = [
+  { icon: 'whatsapp', label: t.whatsapp, hint: t.messageHint, href: links.whatsapp(lang), external: true },
+  { icon: 'viber', label: t.viber, hint: t.messageHint, href: links.viber(), external: false },
+  { icon: 'phone', label: t.phone, hint: config.contact.phone, href: links.phone(), external: false },
+  {
+    icon: 'instagram',
+    label: t.instagram,
+    hint: `@${config.contact.instagram}`,
+    href: links.instagram(),
+    external: true,
+  },
+] as const;
+---
+
+<section id="contact" class="section contact" aria-labelledby="contact-title">
+  <div class="container contact__inner">
+    <div class="section-head section-head--center" data-reveal>
+      <p class="kicker"><span class="kicker__num">V</span>{t.kicker}</p>
+      <h2 id="contact-title" class="section-title">{t.title}</h2>
+      <p class="section-intro">{t.lead}</p>
+    </div>
+
+    <ul class="channels">
+      {
+        channels.map((c, i) => (
+          <li data-reveal style={`transition-delay: ${i * 0.06}s`}>
+            <a
+              class="channel"
+              href={c.href}
+              {...(c.external ? { target: '_blank', rel: 'noopener' } : {})}
+            >
+              <span class="channel__icon">
+                <Icon name={c.icon} />
+              </span>
+              <span class="channel__label">{c.label}</span>
+              <span class="channel__hint">{c.hint}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="contact__studio" data-reveal>
+      <Icon name="pin" />
+      <span>{t.studio}: {config.city[lang]}</span>
+    </p>
+  </div>
+</section>
+
+<style>
+  .contact {
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(50rem 28rem at 50% 0%, rgb(201 164 106 / 0.08), transparent 70%);
+  }
+
+  .channels {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  .channel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    height: 100%;
+    padding: 2.25rem 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    text-align: center;
+    text-decoration: none;
+    transition:
+      border-color 0.35s var(--ease),
+      transform 0.35s var(--ease),
+      background-color 0.35s var(--ease);
+  }
+
+  .channel:hover {
+    border-color: var(--brass);
+    transform: translateY(-4px);
+  }
+
+  .channel__icon {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-bottom: 0.9rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    color: var(--brass);
+    transition:
+      background-color 0.35s var(--ease),
+      color 0.35s var(--ease);
+  }
+
+  .channel__icon :global(svg) {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .channel:hover .channel__icon {
+    background: var(--brass);
+    color: var(--bg);
+  }
+
+  .channel__label {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .channel__hint {
+    color: var(--muted);
+    font-size: 0.88rem;
+    overflow-wrap: anywhere;
+  }
+
+  .contact__studio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 2.5rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+  }
+
+  .contact__studio :global(svg) {
+    width: 1.1rem;
+    height: 1.1rem;
+    color: var(--brass);
+  }
+
+  @media (max-width: 56rem) {
+    .channels {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 26rem) {
+    .channel {
+      padding: 1.75rem 0.75rem;
+    }
+
+    .channel__label {
+      font-size: 1.3rem;
+    }
+  }
+</style>

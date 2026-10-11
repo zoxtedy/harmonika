@@ -1,0 +1,153 @@
+---
+import Icon from './Icon.astro';
+import { config } from '../config';
+import { dictionaries, type Lang } from '../i18n';
+import { links } from '../lib/contact';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = dictionaries[lang].gallery;
+---
+
+<section id="gallery" class="section section--raised" aria-labelledby="gallery-title" data-gallery>
+  <div class="container">
+    <div class="gallery__head" data-reveal>
+      <div class="section-head">
+        <p class="kicker"><span class="kicker__num">IV</span>{t.kicker}</p>
+        <h2 id="gallery-title" class="section-title">{t.title}</h2>
+        <p class="section-intro">{t.intro}</p>
+      </div>
+      <a class="btn btn--ghost" href={links.instagram()} target="_blank" rel="noopener">
+        <Icon name="instagram" />
+        {t.follow}
+      </a>
+    </div>
+
+    <ul class="posts">
+      {
+        config.instagramPosts.map((url, i) => (
+          <li class="post" data-reveal style={`transition-delay: ${i * 0.08}s`}>
+            {/* Instagram's embed.js swaps this blockquote for the player; until then it is a plain link. */}
+            <blockquote class="instagram-media" data-instgrm-permalink={url} data-instgrm-version="14">
+              <a href={url} target="_blank" rel="noopener" class="post__fallback">
+                <Icon name="instagram" class="post__icon" />
+                <span>{t.open}</span>
+              </a>
+            </blockquote>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<script>
+  // Load Instagram's embed script only when the gallery approaches the viewport.
+  type Instgrm = { Embeds: { process: () => void } };
+
+  const gallery = document.querySelector('[data-gallery]');
+  if (gallery) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        observer.disconnect();
+        const existing = (window as unknown as { instgrm?: Instgrm }).instgrm;
+        if (existing) {
+          existing.Embeds.process();
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://www.instagram.com/embed.js';
+        script.async = true;
+        document.body.append(script);
+      },
+      { rootMargin: '600px 0px' },
+    );
+    observer.observe(gallery);
+  }
+</script>
+
+<style>
+  .gallery__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem 3rem;
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .gallery__head .section-head {
+    margin-bottom: 0;
+  }
+
+  .posts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .post {
+    min-width: 0;
+  }
+
+  /* Placeholder look before (or without) Instagram's script. */
+  .post :global(.instagram-media) {
+    margin: 0 !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: var(--radius) !important;
+  }
+
+  .post blockquote {
+    margin: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  .post__fallback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    aspect-ratio: 4 / 5;
+    padding: 2rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: repeating-linear-gradient(90deg, rgb(201 164 106 / 0.04) 0 1px, transparent 1px 20px);
+    transition: color 0.3s var(--ease);
+  }
+
+  .post__fallback:hover {
+    color: var(--brass);
+  }
+
+  .post__fallback :global(.post__icon) {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--brass);
+  }
+
+  @media (max-width: 60rem) {
+    .posts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 38rem) {
+    .posts {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

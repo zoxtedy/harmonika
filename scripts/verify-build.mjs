@@ -4,14 +4,14 @@ import { readFileSync, existsSync } from 'node:fs';
 import assert from 'node:assert/strict';
 
 const base = '/harmonika/';
-const pages = { sr: 'dist/index.html', ru: 'dist/ru/index.html', en: 'dist/en/index.html' };
+const pages = { sr: 'dist/index.html', ru: 'dist/ru/index.html' };
 
 for (const [lang, file] of Object.entries(pages)) {
   assert.ok(existsSync(file), `${file} was not built`);
   const html = readFileSync(file, 'utf8');
 
   assert.match(html, new RegExp(`<html lang="${lang}"`), `${file}: wrong <html lang>`);
-  for (const id of ['about', 'lessons', 'pricing', 'gallery', 'contact']) {
+  for (const id of ['about', 'lessons', 'trial', 'gallery', 'contact']) {
     assert.match(html, new RegExp(`id="${id}"`), `${file}: missing #${id} section`);
   }
   for (const link of ['https://wa.me/', 'viber://chat?number=', 'tel:+', 'https://www.instagram.com/']) {
@@ -24,4 +24,5 @@ for (const [lang, file] of Object.entries(pages)) {
 }
 
 assert.ok(existsSync('dist/404.html'), '404 page was not built');
-console.log('Build verified: sr, ru, en and 404 pages look correct.');
+assert.ok(!existsSync('dist/en/index.html'), 'English page should not be built');
+console.log('Build verified: sr, ru and 404 pages look correct.');

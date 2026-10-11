@@ -10,7 +10,7 @@
   --brass-bright: #e3c590;
   --wine: #6e2531;
 
-  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-display: 'EB Garamond', 'Times New Roman', serif;
   --font-body: 'Manrope', system-ui, sans-serif;
 
   --gutter: clamp(1rem, 4vw, 2.5rem);

@@ -93,6 +93,9 @@ const t = dictionaries[lang].gallery;
 
   .post {
     min-width: 0;
+    /* Instagram briefly renders its iframe wider than the column while loading. */
+    overflow: hidden;
+    border-radius: var(--radius);
   }
 
   /* Placeholder look before (or without) Instagram's script. */

@@ -98,6 +98,9 @@ async function fetchPostHtml(shortcode) {
     });
     if (!res.ok) continue;
     const html = await res.text();
+    if (html.includes('PolarisLoggedOutPrivate')) {
+      throw new Error('This post is only visible to logged-in followers (private account or restricted post)');
+    }
     if (html.includes('image_versions2') || html.includes('og:image')) return html;
   }
   throw new Error('Instagram did not return the post (it may be private, deleted, or rate-limited)');

@@ -97,6 +97,7 @@ export const sr = {
     viber: 'Viber',
     phone: 'Telefon',
     instagram: 'Instagram',
+    facebook: 'Facebook',
     messageHint: 'Pošalji poruku',
     whatsappMessage: 'Zdravo! Zanimaju me časovi harmonike.',
     otherLocations: 'po dogovoru i na drugim lokacijama',

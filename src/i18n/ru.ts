@@ -107,6 +107,7 @@ export const ru: Dict = {
     viber: 'Viber',
     phone: 'Телефон',
     instagram: 'Instagram',
+    facebook: 'Facebook',
     messageHint: 'Написать',
     whatsappMessage: 'Здравствуйте! Меня интересуют уроки игры на аккордеоне.',
     otherLocations: 'рядом с остановкой, удобное расположение',

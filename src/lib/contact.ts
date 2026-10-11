@@ -11,4 +11,5 @@ export const links = {
   viber: () => `viber://chat?number=${encodeURIComponent(contact.viber.replace(/[^\d+]/g, ''))}`,
   phone: () => `tel:${contact.phone.replace(/[^\d+]/g, '')}`,
   instagram: () => `https://www.instagram.com/${contact.instagram}/`,
+  facebook: () => contact.facebook,
 };

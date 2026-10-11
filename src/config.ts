@@ -20,7 +20,7 @@ export const config = {
   /** Where lessons take place. */
   location: {
     sr: 'Kaluđerica, Beograd',
-    ru: 'Калуджерица, Белград',
+    ru: 'Калуђерица, Белград',
   } satisfies Record<Lang, string>,
 
   contact: {

@@ -30,7 +30,7 @@ Requires Node.js 22.12 or newer.
 
 ```sh
 npm install
-npm run dev       # http://localhost:4321/harmonika/
+npm run dev       # http://localhost:4321/
 npm test          # type-check, build, and verify the built pages
 ```
 
@@ -49,8 +49,8 @@ The post must be public. If Instagram starts refusing requests after many downlo
 
 ## Deployment
 
-`.github/workflows/deploy.yml` builds and publishes the site on every push to `main`.
-One-time setup: in the repository's **Settings → Pages**, set **Source** to **GitHub Actions**.
+The site is live at **https://petarvelickovic.com/**, served by Cloudflare, which builds `main`
+(`npm run build`, output folder `dist`) on every push.
 
-The site is served at `https://zoxtedy.github.io/harmonika/`. For a custom domain, change `site` and
-set `base: '/'` in `astro.config.mjs`, update `base` in `scripts/verify-build.mjs`, and add the domain in the Pages settings.
+`.github/workflows/deploy.yml` publishes only a redirect page to GitHub Pages, so the old address
+`https://zoxtedy.github.io/harmonika/` forwards visitors to the domain.

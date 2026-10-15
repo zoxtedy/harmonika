@@ -3,7 +3,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import assert from 'node:assert/strict';
 
-const base = '/harmonika/';
+const base = '/';
 const pages = { sr: 'dist/index.html', ru: 'dist/ru/index.html' };
 
 for (const [lang, file] of Object.entries(pages)) {

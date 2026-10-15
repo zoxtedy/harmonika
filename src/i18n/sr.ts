@@ -85,7 +85,11 @@ export const sr = {
   gallery: {
     kicker: 'Galerija',
     title: 'Na sceni i u studiju',
-    intro: 'Kratki snimci sa časova, proba i nastupa.',
+    intro: 'Fotografije i kratki snimci sa nastupa, časova i proba.',
+    photos: {
+      performance: { caption: 'Nastup', alt: 'Petar Veličković svira harmoniku na sceni' },
+      tv: { caption: 'Gostovanje na televiziji', alt: 'Petar Veličković kao gost u televizijskoj emisiji' },
+    },
     open: 'Pogledaj na Instagramu',
     follow: 'Prati na Instagramu',
   },

@@ -46,6 +46,15 @@ export const config = {
     ages: '', // e.g. '6–70'
   },
 
+  /**
+   * Photos at the top of the gallery, from /public. `key` matches the
+   * caption and alt text in src/i18n (gallery.photos).
+   */
+  photos: [
+    { key: 'performance', file: 'images/performance.jpg', width: 1066, height: 1066 },
+    { key: 'tv', file: 'images/tv-interview.jpg', width: 1600, height: 1067 },
+  ],
+
   /** Instagram posts or reels to embed in the gallery (full URLs). */
   instagramPosts: [
     'https://www.instagram.com/reel/CpsO5QIjjxk/',

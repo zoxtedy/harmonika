@@ -220,8 +220,24 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       aspect-ratio: 4 / 3;
     }
 
+    /* Swipeable row instead of six tall reels stacked on top of each other. */
     .posts {
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: min(326px, 86%);
+      gap: 1rem;
+      margin-inline: calc(-1 * var(--gutter));
+      padding: 0 var(--gutter) 0.75rem;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: var(--gutter);
+      scrollbar-width: thin;
+      scrollbar-color: var(--line-strong) transparent;
+    }
+
+    .post {
+      scroll-snap-align: start;
     }
   }
 </style>

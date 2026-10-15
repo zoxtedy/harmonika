@@ -57,8 +57,11 @@ export const config = {
 
   /** Instagram posts or reels to embed in the gallery (full URLs). */
   instagramPosts: [
-    'https://www.instagram.com/reel/CpsO5QIjjxk/',
-    'https://www.instagram.com/reel/DWRRMC8ggfj/',
-    'https://www.instagram.com/reel/DWG9JTQglAY/',
+    'https://www.instagram.com/p/DeW-dllqwNn/', // orchestra rehearsal, Oct 2026
+    'https://www.instagram.com/p/DeHWN7TqYlS/', // #orkestar #leštane #kaluđerica
+    'https://www.instagram.com/p/Dd8b5MtqkKY/', // "Orkestar je spreman!"
+    'https://www.instagram.com/p/DeWatv9K6AE/', // #orkestar #proba
+    'https://www.instagram.com/p/DeGmojOKGI1/', // orchestra on RTS "Šarenica"
+    'https://www.instagram.com/p/DdUCL-mq4cI/',
   ],
 };
